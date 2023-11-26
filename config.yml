@@ -1,0 +1,30 @@
+folders:
+  - root_path: "/Users/mrojas/Downloads/samples-R/spark-r-notebooks-master"
+    root_path_label: "spark-r-notebooks-master"
+    exclude_folders:
+      - "^exclude_folder2.*"
+    exclude_files:
+      - "\\.log$"
+keywords:
+  - library
+  - SparkR
+  - from_unixtime
+  - unix_timestamp
+  - from_utc_timestamp
+  - locate
+  - instr
+  - datediff
+  - date_add
+  - date_sub
+  - date_format
+  - struct
+  - named_struct
+  - array_max/array_min
+  - array_agg
+  - arrays_zip
+  - array
+  - collect_list
+  - collect_set
+  - explode / explode_outer
+  - map_from_arrays
+  - from_json
