@@ -1,10 +1,7 @@
 folders:
-  - root_path: "/Users/mrojas/Downloads/samples-R/spark-r-notebooks-master"
-    root_path_label: "spark-r-notebooks-master"
-    exclude_folders:
-      - "^exclude_folder2.*"
-    exclude_files:
-      - "\\.log$"
+  - root_path: "/path/to/workload1"
+  - root_path: "/path/to/workload2"
+  - root_path: "/path/to/workload3"
 keywords:
   - library
   - SparkR
