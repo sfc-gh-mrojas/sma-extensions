@@ -13,6 +13,7 @@ keyword_list = []
 def analyze_jupyter_notebook(file_path, keywords):
     # Read the Jupyter notebook
     with open(file_path, 'r', encoding='utf-8') as f:
+        total_cells = 0
         keyword_counts = {keyword: 0 for keyword in keywords}
         notebook_content = nbformat.read(f, as_version=4)
         # Iterate through each cell in the notebook
@@ -122,6 +123,7 @@ def scan_folders(folder_config, keywords_list, output_csv):
 
         for config in folder_config:
             root_path = config.get("root_path", "")
+            root_path_label = config.get("root_path_label", "")
             exclude_folders = config.get("exclude_folders", [])
             exclude_files = config.get("exclude_files", [])
 

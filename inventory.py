@@ -129,7 +129,7 @@ def process_file(file_path,root):
                         blank_lines = sum(1 for line in lines if not line.strip())
             rel_path = file_path[len(root):]
             return {
-                'FileName': rel_path,
+                'FileName': file_path,
                 'Extension': extension,
                 'Technology': technology,
                 'Status': None,  # You can fill in the status information if needed

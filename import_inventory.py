@@ -144,7 +144,7 @@ def process_file(file_path,root):
                                     {
                                         "Element":Element,
                                         "ProjectId":"ProjectId",
-                                        "FileId":rel_path,
+                                        "FileId":file_path,
                                         "Count":"1",
                                         "Alias":Alias,
                                         "Kind":"",

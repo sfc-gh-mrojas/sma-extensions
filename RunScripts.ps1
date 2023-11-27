@@ -19,14 +19,22 @@ Write-Output "Creating output Directory " $outputPath
 $inventoryScript = "inventory.py"
 $importInventoryScript = "import_inventory.py"
 $keywordsScript = "keywords.py"
+$literalsScript = "literal_analyzer.py"
+$sqlScripts = "sql_scripts_metrics.py"
 
 # Run Python scripts with arguments
 Write-Host "Executing Python scripts..."
-Write-Host "Executing Inventory collection..."
+Write-Host "Executing Inventory collection..." -ForegroundColor Green
 & $PYTHON $inventoryScript            $configFile $outputPath
-Write-Host "Executing Import Inventory collection..."
+Write-Host "Executing Import Inventory collection..." -ForegroundColor Green
 & $PYTHON $importInventoryScript      $configFile $outputPath
-Write-Host "Executing Keywords collection..."
+Write-Host "Executing Keywords collection..." -ForegroundColor Green
 & $PYTHON $keywordsScript             $configFile $outputPath
+Write-Host "Executing Literals collection..." -ForegroundColor Green
+& $PYTHON $literalsScript             $configFile $outputPath
+Write-Host "Executing SQL Scripts collection..." -ForegroundColor Green
+& $PYTHON $sqlScripts                 $configFile $outputPath
+
+
 
 Write-Host "Scripts executed successfully."
