@@ -1,62 +1,17 @@
-# SnowConvert Tools for R
+# SMA Extension Scripts
 
-This repository contains scripts that can be used to collect information about R workloads.
+The Snowpark Migrator Accelerator (SMA) already provides a lot of built in functionality to collect data about PySpark or Scala workloads.
 
-In general the scripts will collect:
+This repository provides scripts that can be used alongside the SMA to help in:
 
-- FilesInventory.csv, columns:
-  - FileName
-  - Extension
-  - Technology
-  - Status
-  - isBinary
-  - Bytes
-  - ContentType
-  - ContentLines
-  - CommentLines
-  - BlankLines
-- Keywords.csv, columns:
-  - File,
-  - Technology
-  - Keyword
-  - Count
-- ImportUsagesInventory.csv, columns:
-  - Element
-  - ProjectId
-  - FileId
-  - Count
-  - Alias
-  - Kind
-  - Line
-  - PackageName
-  - Supported
-  - Automated
-  - Status
-  - Statement
-  - SessionId
-  - SnowConvertCoreVersion
-  - SnowparkVersion
-  - ElementPackage
-- R_SQL_Snippets.csv, columns:
-  - FileName
-  - Literal
-  - Line
-- SQL_metrics.csv, columns:
-  - FileName
-  - Key
-  - Name
-  - Lines
-  - Characters
-  - Tables
-- SQL_metrics_error.csv, columns:
-  - FileName
-  - Error
-  - Line
-  - Col
+- collect metrics in situations where the SMA cannot be installed
+- collect metrics for languages not yet supported by SMA (like R or Java)
+- perform code extraction or code preparation tasks.
 
 ## Usage
 
 To run the scripts you need to have the following installed:
+
 - python3
 - Powershell
 - all the packages in requirements.txt
@@ -100,8 +55,9 @@ keywords:
   - from_json
 ```
 
-The `root_path` is the path to the folder that contains your code. The focus of this scripts is to collect information on R and SQL files.
-You can specificy as many `root_path` folders as you want.
+The `root_path` is the path to the folder that contains your code. 
+
+The focus of these scripts is to collect information on R and SQL files.You can specificy as many `root_path` folders as you want.
 
 The `keywords` are the keywords that will be used to identify patterns in R and SQL files.
 

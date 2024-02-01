@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 from ply import lex
 import os
 import rich
