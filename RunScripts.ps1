@@ -15,15 +15,15 @@ New-Item -ItemType Directory -Force -Path $outputPath
 
 Write-Output "Creating output Directory " $outputPath
 
-# Define paths to Python scripts
-$inventoryScript = "inventory.py"
+# Define paths to scripts
+$inventoryScript       = "inventory.py"
 $importInventoryScript = "import_inventory.py"
-$keywordsScript = "keywords.py"
-$literalsScript = "literal_analyzer.py"
-$sqlScripts = "sql_scripts_metrics.py"
+$keywordsScript        = "keywords.py"
+$literalsScript        = "literal_analyzer.py"
+$sqlScripts            = "sql_scripts_metrics.py"
 
-# Run Python scripts with arguments
-Write-Host "Executing Python scripts..."
+# Run scripts with arguments
+Write-Host "Executing scripts..."
 Write-Host "Executing Inventory collection..." -ForegroundColor Green
 & $PYTHON $inventoryScript            $configFile $outputPath
 Write-Host "Executing Import Inventory collection..." -ForegroundColor Green

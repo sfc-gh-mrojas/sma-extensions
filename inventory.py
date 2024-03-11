@@ -189,10 +189,9 @@ def do_file_processing(root_path,folder_path,csv_writer, file):
         logging.error(f"Error processing file: {file_path} - {e}")
 
 def main():
-    parser = argparse.ArgumentParser(description="Scan folders based on YAML configuration and generate CSV.")
+    parser = argparse.ArgumentParser(description="Scan folders based on YAML configuration to collect general metrics and generate CSV.")
     parser.add_argument("config_file", help="Path to the YAML configuration file")
     parser.add_argument("output_folder", help="Folder for all the tool output")
-    #parser.add_argument("output_csv", help="Path to the output CSV file",default="FilesInventory.csv")
 
     args = parser.parse_args()
 

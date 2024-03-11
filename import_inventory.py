@@ -6,6 +6,7 @@ import logging
 import csv
 from rich.console import Console
 import yaml
+import ast
 
 import nbformat
 # Regular expression to match library or require statements
@@ -70,7 +71,7 @@ def collect_import_info(extension,statement, line):
             yield (elementname,line,alias,statement,elementpackage)
     elif extension == ".py":
         if "import " in statement:
-            yield from collect_import_statements(statement, line)
+            yield from extract_import_info_py(statement, line)
     elif extension == ".scala":
         if "import " in statement:
             yield from extract_import_info_scala(statement, line)
