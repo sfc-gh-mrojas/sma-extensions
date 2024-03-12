@@ -2,6 +2,14 @@ folders:
   - root_path: "/path/to/workload1"
   - root_path: "/path/to/workload2"
   - root_path: "/path/to/workload3"
+ignore_folders:
+  - root_path: .git
+  - root_path: .conda
+  - root_path: .cache
+  - root_path: .build
+  - root_path: .env
+  - root_path: .local
+
 keywords:
   - library
   - SparkR

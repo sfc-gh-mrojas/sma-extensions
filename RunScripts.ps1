@@ -21,6 +21,10 @@ $importInventoryScript = "import_inventory.py"
 $keywordsScript        = "keywords.py"
 $literalsScript        = "literal_analyzer.py"
 $sqlScripts            = "sql_scripts_metrics.py"
+$java_methods          = "collect_java_methods.py"
+$java_strings          = "collect_java_strings.py"
+$java_maven            = "collect_gradle_dependencies.py"
+$java_gradle           = "collect_maven_dependencies.py"
 
 # Run scripts with arguments
 Write-Host "Executing scripts..."
@@ -34,7 +38,14 @@ Write-Host "Executing Literals collection..." -ForegroundColor Green
 & $PYTHON $literalsScript             $configFile $outputPath
 Write-Host "Executing SQL Scripts collection..." -ForegroundColor Green
 & $PYTHON $sqlScripts                 $configFile $outputPath
-
+Write-Host "Executing java methods..." -ForegroundColor Green
+& $PYTHON $java_methods               $configFile $outputPath
+Write-Host "Executing java strings..." -ForegroundColor Green
+& $PYTHON $java_strings               $configFile $outputPath
+Write-Host "Executing java maven..." -ForegroundColor Green
+& $PYTHON $java_maven                 $configFile $outputPath
+Write-Host "Executing java gradle..." -ForegroundColor Green
+& $PYTHON $java_gradle                $configFile $outputPath
 
 
 Write-Host "Scripts executed successfully."

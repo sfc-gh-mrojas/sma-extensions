@@ -134,7 +134,7 @@ def do_file_processing(root_path,folder_path,csv_writer, file):
         logging.error(f"Error processing file: {file_path} - {e}")
 
 def main():
-    parser = argparse.ArgumentParser(description="Scan folders based on YAML configuration to collect maven info and generate CSV.")
+    parser = argparse.ArgumentParser(description="Scan folders based on YAML configuration to collect strings info and generate CSV.")
     parser.add_argument("config_file", help="Path to the YAML configuration file")
     parser.add_argument("output_folder", help="Folder for all the tool output")
 
