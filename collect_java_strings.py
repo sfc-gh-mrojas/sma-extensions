@@ -7,12 +7,22 @@ from rich.console import Console
 import csv
 import xml.etree.ElementTree as ET
 import javalang
+import re
 
-def is_sql_statement(input_string):
-    keywords = ["SELECT", "INSERT", "UPDATE", "DELETE", "CREATE", "ALTER", "DROP"]
-    for keyword in keywords:
-        if keyword in input_string.upper():
+def is_sql_statement(statement):
+    # Keywords to check for
+    keywords = ['SELECT', 'INSERT', 'UPDATE', 'DELETE', 'CREATE', 'DROP', 'ALTER']
+    
+    # Check if any keyword exists in the statement
+    if any(keyword in statement.upper() for keyword in keywords):
+        # Regex pattern to validate SQL statements
+        sql_pattern = r'\b(SELECT|INSERT INTO|UPDATE|DELETE FROM|CREATE|DROP|ALTER)\b.*\b(FROM|INTO|TABLE|DATABASE|WHERE|INDEX|VIEW|SET|VALUES)\b.*'
+        
+        # Check if the statement matches the regex pattern
+        if re.match(sql_pattern, statement.upper()):
             return True
+        else:
+            logging.warning(f"Invalid SQL statement: {statement}")
     return False
 
 def extract_strings_from_method(method_node):

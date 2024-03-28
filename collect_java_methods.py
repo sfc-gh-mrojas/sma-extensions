@@ -103,7 +103,7 @@ def do_file_processing(root_path,folder_path,csv_writer, file):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Scan folders based on YAML configuration to collect maven info and generate CSV.")
+    parser = argparse.ArgumentParser(description="Scan folders based on YAML configuration to collect java methods and generate CSV.")
     parser.add_argument("config_file", help="Path to the YAML configuration file")
     parser.add_argument("output_folder", help="Folder for all the tool output")
 
