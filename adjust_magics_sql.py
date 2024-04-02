@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Script Name: ProcessMagicSQL.py
+Script Name: adjust_magics_sql.py
 
 Description:
     This script recursively processes a folder, adjusting magic SQL blocks within the files. It looks for magic SQL blocks
@@ -15,7 +15,7 @@ Command-line Arguments:
         The default session variable name is 'session'.
 
 Usage Example:
-    python ProcessMagicSQL.py /path/to/folder -s custom_session_var
+    python adjust_magics_sql.py /path/to/folder -s custom_session_var
 """
 import os
 import sys
@@ -41,13 +41,15 @@ def process_file(file_path):
             # Replace '# MAGIC' with ''
             line = line.replace('# MAGIC', '')
         new_lines.append(line)
-
+    if inside_magic_block:
+        new_lines.append('""").show()\n')
     # Write the modified content back to the file
     with open(file_path, 'w') as file:
         file.writelines(new_lines)
 
 def process_folder(folder_path):
     print(f"Processing folder {folder_path}")
+    i = 0
     for foldername, subfolders, filenames in os.walk(folder_path):
         print(f"Processing {len(filenames)}")
         for filename in filenames:
@@ -55,6 +57,8 @@ def process_folder(folder_path):
             if filename.endswith('.py'):
                 file_path = os.path.join(foldername, filename)
                 process_file(file_path)
+                i = i + 1
+    print(f"Processed {i} files")
 
 if __name__ == "__main__":
     import argparse
@@ -70,3 +74,4 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
     process_folder(args.input_path)
+    print("Done")
