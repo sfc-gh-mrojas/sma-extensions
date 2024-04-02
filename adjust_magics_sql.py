@@ -47,8 +47,11 @@ def process_file(file_path):
         file.writelines(new_lines)
 
 def process_folder(folder_path):
+    print(f"Processing folder {folder_path}")
     for foldername, subfolders, filenames in os.walk(folder_path):
+        print(f"Processing {len(filenames)}")
         for filename in filenames:
+            print(f"==>Processing file: {filename}")
             if filename.endswith('.py'):
                 file_path = os.path.join(foldername, filename)
                 process_file(file_path)
