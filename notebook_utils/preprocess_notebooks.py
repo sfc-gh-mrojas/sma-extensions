@@ -33,7 +33,7 @@ def convert_to_notebook(processed_lines, notebook_path):
     with open(notebook_path, 'w') as f:
         nbformat.write(notebook, f)
 
-def process_file(file_path, source_path, target_path):
+def process_file(file_path, source_path, target_path, output_format):
     global sql_magics_info
     sql_magics_info_header = False
 
@@ -41,7 +41,7 @@ def process_file(file_path, source_path, target_path):
         lines = f.readlines()
     
     output_lines = []
-    notebook_name = os.path.splitext(os.path.basename(file_path))[0]
+    notebook_name = os.path.splitext(os.path.basename(file_path))[0].replace("-","_")
     spark_session_initialized = False
     i = 0
 
@@ -120,16 +120,21 @@ def process_file(file_path, source_path, target_path):
         i += 1
 
     # Write transformed content back to the file
-    new_path = file_path.replace(source_path, target_path).replace(".py", ".ipynb")
+    if output_format == "text":
+        new_path = file_path.replace(source_path, target_path).replace("-","_")
+        os.makedirs(os.path.dirname(new_path), exist_ok=True)
+        with open(new_path, "w") as f:
+            f.writelines(output_lines)
+    else:
+        new_path = file_path.replace(source_path, target_path).replace(".py", ".ipynb").replace("-","_")
+        convert_to_notebook(output_lines, new_path)
 
-    convert_to_notebook(output_lines, new_path)
 
-
-def process_folder(source_path,target_path ):
+def process_folder(source_path,target_path,output_format):
     for root, _, files in os.walk(source_path):
         for file in files:
             if file.endswith('.py'):
-                process_file(os.path.join(root, file),source_path,target_path)
+                process_file(os.path.join(root, file),source_path,target_path, output_format)
 
 
 def main():
@@ -144,17 +149,24 @@ def main():
         type=str,
         help="The target folder where processed files and notebooks will be saved."
     )
+    parser.add_argument(
+        "--format",
+        choices=["text", "jupyter"],
+        default="text",
+        help="Output format: 'text' for plain Python files, 'jupyter' for Jupyter Notebooks. Default is 'text'."
+    )
     args = parser.parse_args()
 
     source_folder = args.source_folder
     target_folder = args.target_folder
+    output_format = args.format
     if not os.path.isdir(source_folder):
         print(f"Error: {source_folder} is not a valid directory.")
         return
     os.makedirs(target_folder, exist_ok=True)
 
     print(f"Processing folder: {source_folder}")
-    process_folder(source_folder, target_folder)
+    process_folder(source_folder, target_folder, output_format)
     print("Processing complete.")
 
     # Write to CSV
